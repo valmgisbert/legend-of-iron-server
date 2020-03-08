@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-	studentName: {type: String, required: false},
-	cohort: {type: String, required: false}, 
+	studentName: {type: String, required: true},
+	cohort: {type: String, required: true}, 
 	saveSlots: [{type: Schema.Types.ObjectId, ref: "SaveFile"}]
 }, {
   timestamps: {

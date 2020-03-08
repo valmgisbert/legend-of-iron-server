@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const saveFileSchema = new Schema({
   user: {type: Schema.Types.ObjectId, ref: "User"},
-  gameState: [{choiceId}]
+  gameState: {type: Array}
 }, {
   timestamps: {
     createdAt: 'created_at',
