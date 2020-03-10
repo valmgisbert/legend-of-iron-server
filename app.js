@@ -35,7 +35,7 @@ app.use(
     credentials: true,
     origin: [
       process.env.PUBLIC_DOMAIN,
-      "https://legend-of-iron.herokuapp.com"],
+      "https://legend-of-iron.herokuapp.com"]
   }),
 );
 // app.use((req, res, next) => {

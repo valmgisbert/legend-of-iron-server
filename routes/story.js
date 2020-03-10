@@ -12,7 +12,7 @@ const SaveFile = require("../models/saveFile");
 storyRouter.post('/:id', (req, res, next) => {
   const storyId = req.params.id;
 
-  SaveFile.findByIdAndUpdate({_id: storyId}, {gameState})
+  SaveFile.findByIdAndUpdate(storyId, {gameState})
     .then( (updatedFile) => {
       res.status(200)
       .json(updatedFile);
@@ -27,7 +27,7 @@ storyRouter.post('/:id', (req, res, next) => {
 storyRouter.get('/:id', (req, res, next) => {
   const storyId = req.params.id;
 
-  SaveFile.findById({_id: storyId})
+  SaveFile.findById(storyId)
     .then( (saveFile) => {
       res.status(200)
       .json(saveFile);
