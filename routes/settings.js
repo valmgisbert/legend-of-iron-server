@@ -47,12 +47,17 @@ settingsRouter.get('/saveload', (req, res, next) => {
     });
 })
 
-//GET see the saveload menu with all the save files
+//POST add the save file and update the user with the save file
 settingsRouter.post('/saveload', (req, res, next) => {
-  SaveFile.create()
+  const saveFile = req.body;
+  saveFile.user = req.session.currentUser._id;
+
+  SaveFile.create(saveFile)
     .then( (newSaveFile) => {
-      res.status(200)
-      .json(newSaveFile);
+      User.findByIdAndUpdate(req.session.currentUser._id, {$push: {saveSlots: newSaveFile._id}}, {new: true})
+        .populate("saveSlots")
+        .then( (updatedUser) => res.status(200).json(updatedUser))
+        .catch( (err) => res.status(400).json(err))
     })
     .catch( (err) => {
       res.status(400)

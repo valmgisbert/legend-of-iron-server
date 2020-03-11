@@ -82,4 +82,14 @@ authRouter.get('/me', isLoggedIn, (req, res, next) => {
   res.status(200).json(currentUserSessionData);
 });
 
+// GET '/auth/profile'
+authRouter.get('/profile', isLoggedIn, (req, res, next) => {
+  const {_id} = req.session.currentUser;
+
+  User.findById(_id)
+    .populate('saveSlots')
+    .then( (user) => res.status(200).json(user))
+    .catch( (err) => res.status(400).json(err))
+});
+
 module.exports = authRouter;
