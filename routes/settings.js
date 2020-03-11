@@ -47,6 +47,19 @@ settingsRouter.get('/saveload', (req, res, next) => {
     });
 })
 
+//GET see the saveload menu with all the save files
+settingsRouter.post('/saveload', (req, res, next) => {
+  SaveFile.create()
+    .then( (newSaveFile) => {
+      res.status(200)
+      .json(newSaveFile);
+    })
+    .catch( (err) => {
+      res.status(400)
+      .json(err);
+    });
+})
+
 //DELETE an existing save file
 settingsRouter.delete('/saveload/:id', (req, res, next) => {
   const saveFileId = req.params.id;
